@@ -21,15 +21,19 @@
         <button onclick="loadPhones()" class="btn btn-outline-secondary" type="button"
             id="button-addon2">search</button>
     </div>
+
+    <!-- show error -->
     <div>
         <p id="error-message" class="fw-bold text-danger">No phone found.Please try again later.</p>
     </div>
+
     <!-- single phone detail -->
-    <div id="phone-details" class="w-50 mx-auto">
+    <div id="phone-details" class="container-fluid w-100 mx-auto row row-cols-1 row-cols-md-3 row-cols-sm-1">
     </div>
 
     <!-- phone search result -->
-    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
+    <div id="search-result" class="container-fluid row row-cols-1 row-cols-md-3
+    row-cols-sm-1 g-4">
     </div>
 
     <!-- Bootstrap bundle file -->

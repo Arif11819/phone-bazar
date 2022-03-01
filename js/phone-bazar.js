@@ -1,3 +1,4 @@
+//load phone data
 const loadPhones = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
@@ -10,20 +11,22 @@ const loadPhones = () => {
         .then(data => displaySearchResult(data.data))
 
 }
+
 document.getElementById('error-message').style.display = 'none';
+
 const displaySearchResult = data => {
     if (data.length == 0) {
         const displayError = document.getElementById('error-message').style.display = 'block';
     }
-    else if (data.length <= 20) {
+    else {
         const searchResult = document.getElementById('search-result');
         searchResult.textContent = '';
-        data.forEach(info => {
-            // console.log(info);
+        // slice phone 0-20 here
+        data.slice(0, 20).forEach(info => {
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-            <div class="card h-75 w-75 mx-auto mt-5">
+            <div class="card h-75 w-75 mx-auto mt-3">
                     <img src="${info.image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h4 class="card-title">${info.phone_name}</h4>
@@ -36,12 +39,9 @@ const displaySearchResult = data => {
             document.getElementById('error-message').style.display = 'none';
         });
     }
-    else {
-        const searchResult = document.getElementById('search-result').style.display = 'none';
-    }
 
 }
-
+// load phone details
 const loadPhoneDetail = phoneId => {
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
 
@@ -57,7 +57,7 @@ const phoneDetail = info => {
     div.classList.add('card');
     div.innerHTML = `
         <img src="${info.image}" class="card-img-top" alt="...">
-        <div class="card-body mx-auto ms-0">
+        <div class="card-body">
              <h5 class="card-title fw-bold">${info.name}</h5>
              <p class="card-text">ReleaseDate : ${info.releaseDate ? info.releaseDate : 'No relese date found!!'}</p>
              <p class="card-text">Sensors : ${info.mainFeatures.sensors}</p>
