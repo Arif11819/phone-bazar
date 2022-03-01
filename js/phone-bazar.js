@@ -26,7 +26,7 @@ const displaySearchResult = data => {
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-            <div class="card h-75 w-75 mx-auto mt-3">
+            <div class="card h-100 w-75 mx-auto mt-3">
                     <img src="${info.image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h4 class="card-title">${info.phone_name}</h4>
