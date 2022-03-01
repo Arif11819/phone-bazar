@@ -10,9 +10,12 @@ const loadPhones = () => {
         .then(data => displaySearchResult(data.data))
 
 }
-
+document.getElementById('error-message').style.display = 'none';
 const displaySearchResult = data => {
-    if (data.length <= 20) {
+    if (data.length == 0) {
+        const displayError = document.getElementById('error-message').style.display = 'block';
+    }
+    else if (data.length <= 20) {
         const searchResult = document.getElementById('search-result');
         searchResult.textContent = '';
         data.forEach(info => {
@@ -30,7 +33,8 @@ const displaySearchResult = data => {
             </div>
             `;
             searchResult.appendChild(div);
-        })
+            document.getElementById('error-message').style.display = 'none';
+        });
     }
     else {
         const searchResult = document.getElementById('search-result').style.display = 'none';
@@ -48,6 +52,7 @@ const loadPhoneDetail = phoneId => {
 const phoneDetail = info => {
     console.log(info);
     const phoneDetail = document.getElementById('phone-details');
+    phoneDetail.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
